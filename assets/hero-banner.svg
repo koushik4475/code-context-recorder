@@ -1,0 +1,163 @@
+<svg width="1200" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1">
+        <animate attributeName="stop-color" values="#667eea;#764ba2;#667eea" dur="5s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1">
+        <animate attributeName="stop-color" values="#764ba2;#667eea;#764ba2" dur="5s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&amp;display=swap');
+      
+      .title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 80px;
+        font-weight: 700;
+        fill: #ffffff;
+        filter: url(#glow);
+      }
+      
+      .subtitle {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 32px;
+        fill: #f0f0f0;
+        opacity: 0.9;
+      }
+      
+      .particle {
+        fill: rgba(255, 255, 255, 0.6);
+      }
+      
+      .code-line {
+        font-family: 'Courier New', monospace;
+        font-size: 18px;
+        fill: #ffffff;
+        opacity: 0.8;
+      }
+      
+      .icon {
+        font-size: 60px;
+      }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="600" fill="url(#bg-gradient)"/>
+  
+  <!-- Animated particles -->
+  <circle class="particle" cx="100" cy="100" r="3">
+    <animate attributeName="cy" values="100;500;100" dur="10s" repeatCount="indefinite"/>
+  </circle>
+  <circle class="particle" cx="200" cy="200" r="2">
+    <animate attributeName="cy" values="200;400;200" dur="8s" repeatCount="indefinite"/>
+  </circle>
+  <circle class="particle" cx="300" cy="150" r="3">
+    <animate attributeName="cy" values="150;450;150" dur="12s" repeatCount="indefinite"/>
+  </circle>
+  <circle class="particle" cx="900" cy="100" r="2">
+    <animate attributeName="cy" values="100;500;100" dur="9s" repeatCount="indefinite"/>
+  </circle>
+  <circle class="particle" cx="1000" cy="200" r="3">
+    <animate attributeName="cy" values="200;400;200" dur="11s" repeatCount="indefinite"/>
+  </circle>
+  <circle class="particle" cx="1100" cy="150" r="2">
+    <animate attributeName="cy" values="150;450;150" dur="10s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Content -->
+  <g>
+    <!-- Brain emoji icon -->
+    <text x="600" y="150" text-anchor="middle" class="icon">>à</text>
+    
+    <!-- Title -->
+    <text x="600" y="250" text-anchor="middle" class="title">
+      Code Context Recorder
+      <animate attributeName="opacity" values="1;0.8;1" dur="3s" repeatCount="indefinite"/>
+    </text>
+    
+    <!-- Subtitle -->
+    <text x="600" y="310" text-anchor="middle" class="subtitle">
+      Never Lose the WHY Behind Your Code
+    </text>
+    
+    <!-- Code snippet decoration -->
+    <g transform="translate(250, 380)">
+      <rect width="700" height="160" rx="10" fill="rgba(0,0,0,0.3)" opacity="0.8"/>
+      <text x="20" y="35" class="code-line">
+        <tspan fill="#6A9955">// Context: Bulk discount calculation</tspan>
+      </text>
+      <text x="20" y="65" class="code-line">
+        <tspan fill="#569CD6">function</tspan>
+        <tspan fill="#DCDCAA"> calculatePrice</tspan>
+        <tspan>(items) {</tspan>
+      </text>
+      <text x="20" y="95" class="code-line">
+        <tspan>  </tspan>
+        <tspan fill="#569CD6">return</tspan>
+        <tspan> items.reduce(a + b.price * </tspan>
+        <tspan fill="#B5CEA8">0.87</tspan>
+        <tspan>);</tspan>
+      </text>
+      <text x="20" y="125" class="code-line">}</text>
+      
+      <!-- Animated cursor -->
+      <rect x="300" y="110" width="2" height="20" fill="#ffffff">
+        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+    
+    <!-- Feature badges -->
+    <g transform="translate(150, 570)">
+      <rect width="180" height="40" rx="20" fill="rgba(255,255,255,0.2)"/>
+      <text x="90" y="27" text-anchor="middle" font-family="Arial" font-size="16" fill="#ffffff" font-weight="bold">
+        =Ú Auto-Capture
+      </text>
+    </g>
+    
+    <g transform="translate(370, 570)">
+      <rect width="180" height="40" rx="20" fill="rgba(255,255,255,0.2)"/>
+      <text x="90" y="27" text-anchor="middle" font-family="Arial" font-size="16" fill="#ffffff" font-weight="bold">
+        = Smart Search
+      </text>
+    </g>
+    
+    <g transform="translate(590, 570)">
+      <rect width="180" height="40" rx="20" fill="rgba(255,255,255,0.2)"/>
+      <text x="90" y="27" text-anchor="middle" font-family="Arial" font-size="16" fill="#ffffff" font-weight="bold">
+        ñ Timeline
+      </text>
+    </g>
+    
+    <g transform="translate(810, 570)">
+      <rect width="180" height="40" rx="20" fill="rgba(255,255,255,0.2)"/>
+      <text x="90" y="27" text-anchor="middle" font-family="Arial" font-size="16" fill="#ffffff" font-weight="bold">
+        =e Team Sync
+      </text>
+    </g>
+  </g>
+  
+  <!-- Animated connections between particles -->
+  <line x1="100" y1="100" x2="200" y2="200" stroke="rgba(255,255,255,0.2)" stroke-width="1">
+    <animate attributeName="opacity" values="0.2;0.5;0.2" dur="3s" repeatCount="indefinite"/>
+  </line>
+  <line x1="200" y1="200" x2="300" y2="150" stroke="rgba(255,255,255,0.2)" stroke-width="1">
+    <animate attributeName="opacity" values="0.2;0.5;0.2" dur="4s" repeatCount="indefinite"/>
+  </line>
+  <line x1="900" y1="100" x2="1000" y2="200" stroke="rgba(255,255,255,0.2)" stroke-width="1">
+    <animate attributeName="opacity" values="0.2;0.5;0.2" dur="3.5s" repeatCount="indefinite"/>
+  </line>
+  <line x1="1000" y1="200" x2="1100" y2="150" stroke="rgba(255,255,255,0.2)" stroke-width="1">
+    <animate attributeName="opacity" values="0.2;0.5;0.2" dur="4.5s" repeatCount="indefinite"/>
+  </line>
+</svg>

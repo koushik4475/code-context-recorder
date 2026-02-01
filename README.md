@@ -1,254 +1,528 @@
-# Code Context Recorder 🎯
+<div align="center">
 
-> Capture the WHY behind your code, not just the WHAT.
+# 🧠 Code Context Recorder
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+### *Never Lose the WHY Behind Your Code Again*
 
-## The Problem
+<img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"/>
+<img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"/>
+<img src="https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white" alt="TypeScript"/>
+<img src="https://img.shields.io/badge/VS_Code-007ACC?logo=visual-studio-code&logoColor=white" alt="VS Code"/>
 
-Every developer has experienced this:
+[🚀 Quick Start](#-quick-start) • [📖 Documentation](#-features) • [🎯 Demo](#-see-it-in-action) • [💬 Community](#-community)
 
-- Staring at old code wondering "Why did we do it this way?"
-- Finding cryptic comments like "Don't delete this, it breaks everything" with zero context
-- Spending hours debugging because critical decision context was lost
-- Onboarding new developers who can't understand the reasoning behind architecture choices
+---
 
-**Git tracks WHAT changed. Comments explain HOW it works. But nothing captures WHY decisions were made.**
+<img alt="Code Context Recorder Hero" src="https://raw.githubusercontent.com/koushik4475/code-context-recorder/main/assets/hero-banner.svg" width="800px">
 
-## The Solution
+</div>
 
-Code Context Recorder automatically captures and preserves the context around your code:
+---
 
-- 📚 **Research tracking**: Links to Stack Overflow, docs, GitHub issues you referenced
-- 💬 **Decision history**: Associated Slack threads, meeting notes, bug tickets
-- 🎤 **Voice notes**: Optional audio explanations of tricky decisions
-- ⏱️ **Timeline view**: Replay the entire decision-making process months later
-- 🔍 **AI-powered search**: Find context using natural language queries
+## 💥 The Problem
 
-## Architecture
+<table>
+<tr>
+<td width="50%">
 
-```
-code-context-recorder/
-├── packages/
-│   ├── core/              # Core logic, storage, and API
-│   ├── vscode-extension/  # VS Code extension
-│   ├── browser-extension/ # Chrome/Firefox extension for web tracking
-│   ├── git-hooks/         # Git hook integrations
-│   ├── cli/               # Command-line interface
-│   └── web-viewer/        # Web UI for viewing context timelines
-├── apps/
-│   └── desktop/           # Electron desktop app (optional)
-└── docs/                  # Documentation
+**Ever experienced this?** 🤔
+
+```diff
+- "Why did we do it this way?"
+- "Who wrote this and why??"
+- "What was the reasoning here?"
+- Lost critical context forever
+- Hours debugging old code
+- New devs can't understand decisions
 ```
 
-## Quick Start
+</td>
+<td width="50%">
 
-### 1. Install the VS Code Extension
+**Git tracks *WHAT* changed**  
+**Comments explain *HOW* it works**  
+**But nothing captures *WHY***
+
+<br/>
+
+> *"The most valuable code isn't the code itself—it's the context around it."*
+
+</td>
+</tr>
+</table>
+
+---
+
+## ✨ The Solution
+
+Code Context Recorder is your **team's knowledge time machine** ⏰
+
+Automatically captures and preserves the complete story behind your code:
+
+<div align="center">
+
+| Feature | Description | Status |
+|---------|-------------|--------|
+| 📚 **Research Tracking** | Links to Stack Overflow, docs, GitHub issues you referenced | ✅ Ready |
+| 💬 **Decision History** | Associated Slack threads, meeting notes, bug tickets | ✅ Ready |
+| 🎤 **Voice Notes** | Audio explanations of tricky decisions | 🚧 Coming Soon |
+| ⏱️ **Timeline View** | Replay the entire decision-making process | ✅ Ready |
+| 🔍 **AI Search** | Find context using natural language | ✅ Ready |
+| 👥 **Team Sync** | Share context across your entire team | 🚧 Coming Soon |
+
+</div>
+
+---
+
+## 🎯 See It In Action
+
+### 🎬 Adding Context to Your Code
+
+<div align="center">
+
+```mermaid
+graph LR
+    A[🖊️ You Write Code] --> B[🤔 Add Context]
+    B --> C[💾 Auto-Saved]
+    C --> D[🔍 Searchable Forever]
+    D --> E[👥 Team Knowledge]
+    
+    style A fill:#4CAF50,stroke:#2E7D32,color:#fff
+    style B fill:#2196F3,stroke:#1565C0,color:#fff
+    style C fill:#FF9800,stroke:#E65100,color:#fff
+    style D fill:#9C27B0,stroke:#6A1B9A,color:#fff
+    style E fill:#F44336,stroke:#C62828,color:#fff
+```
+
+</div>
+
+<table>
+<tr>
+<td width="50%">
+
+### 📝 Before CCR
+```javascript
+// TODO: Fix this later
+function calculatePrice(items) {
+  return items.reduce((a,b) => 
+    a + b.price * 0.87, 0);
+}
+```
+*Why 0.87? Nobody knows anymore* 😰
+
+</td>
+<td width="50%">
+
+### ✅ With CCR
+```javascript
+// Context: Using 0.87 multiplier for bulk discount
+// Decision: After meeting with sales team
+// Ticket: JIRA-1234
+function calculatePrice(items) {
+  return items.reduce((a,b) => 
+    a + b.price * 0.87, 0);
+}
+```
+*Full context preserved forever* 🎉
+
+</td>
+</tr>
+</table>
+
+### 🎥 Live Demo
+
+<div align="center">
+
+**[Open Interactive Demo](demo.html)** — Try Code Context Recorder in your browser
+
+</div>
+
+---
+
+## 🚀 Quick Start
+
+### Installation is a breeze! Choose your path:
+
+<details open>
+<summary><b>🎨 VS Code Extension (Recommended)</b></summary>
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/code-context-recorder.git
+# Install from VS Code Marketplace (Coming Soon)
+code --install-extension code-context-recorder
+
+# Or install from source
+git clone https://github.com/koushik4475/code-context-recorder.git
 cd code-context-recorder
-
-# Install dependencies
 npm install
-
-# Build all packages
 npm run build
-
-# Install VS Code extension
 cd packages/vscode-extension
 npm run install-extension
 ```
+*On Windows PowerShell use `;` instead of `&&` between commands, or run each line separately.*
 
-### 2. Install Git Hooks
+**Keyboard Shortcuts:**
+- `Ctrl+Shift+C` - Add context
+- `Ctrl+Shift+T` - View timeline
+- `Ctrl+Shift+F` - Search contexts
+- `Ctrl+Shift+V` - Voice note (coming soon)
+
+</details>
+
+<details>
+<summary><b>💻 CLI Tool</b></summary>
 
 ```bash
-# In your project directory
+# Install globally
+npm install -g @ccr/cli
+
+# Or use in your project
+npm install --save-dev @ccr/cli
+
+# Initialize in your project
+ccr init
+```
+
+</details>
+
+<details>
+<summary><b>🔗 Git Hooks</b></summary>
+
+```bash
+# Automatically prompt for context on commits
+cd your-project
 npx ccr-hooks install
 ```
 
-### 3. Install Browser Extension (Optional but Recommended)
+</details>
 
-- Chrome: Load `packages/browser-extension/dist` as unpacked extension
-- Firefox: Load `packages/browser-extension/dist` as temporary extension
+---
 
-## Features
+## 🎨 Features
 
-### 🎯 Automatic Context Capture
+<div align="center">
 
-- **Browser Activity**: Tracks documentation, Stack Overflow, and GitHub visited while coding
-- **Git Integration**: Links commits to context automatically
-- **File Watching**: Detects when you're actively working on code
-- **Smart Filtering**: Only captures relevant context, ignores noise
+### 🔥 Core Capabilities
 
-### 🎤 Voice Notes
+</div>
 
-Record quick voice explanations while coding:
+<table>
+<tr>
+<td width="33%" align="center">
 
-```typescript
-// Trigger voice note with keyboard shortcut (Ctrl+Shift+V)
-// Automatically attached to current file and line
-```
+### 📊 Smart Timeline
+![Timeline Icon](https://img.shields.io/badge/Timeline-4CAF50?style=for-the-badge&logo=timeline&logoColor=white)
 
-### 📊 Context Timeline
+View complete decision history for any file with beautiful visual timeline
 
-View the complete decision history for any file:
+</td>
+<td width="33%" align="center">
 
-```bash
-ccr timeline src/components/Auth.tsx
-```
+### 🎯 Instant Search
+![Search Icon](https://img.shields.io/badge/Search-2196F3?style=for-the-badge&logo=search&logoColor=white)
 
-### 🔍 Semantic Search
+Find context using natural language queries in milliseconds
 
-Find context using natural language:
+</td>
+<td width="33%" align="center">
 
-```bash
-ccr search "why did we choose PostgreSQL over MongoDB"
-ccr search "authentication flow decision"
-```
+### 🔄 Auto-Capture
+![Auto Icon](https://img.shields.io/badge/Auto-FF9800?style=for-the-badge&logo=automatic&logoColor=white)
 
-### 👥 Team Collaboration
+Automatically links browser research to your commits
 
-- Share context across team members
-- Export context for onboarding docs
-- Integration with Slack, Linear, Jira
+</td>
+</tr>
+</table>
 
-## Usage Examples
+### 💡 Usage Examples
 
-### Recording Context Manually
+<details>
+<summary><b>📝 Recording Context</b></summary>
 
 ```bash
 # Add context to current file
-ccr add "Chose this approach because X API was deprecated"
+ccr add "Chose this approach because X API was deprecated" --file src/auth.ts
 
 # Add context with links
 ccr add "Following this pattern: https://..." --file src/auth.ts
 
-# Add voice note
-ccr voice --file src/utils/crypto.ts
+# Record important decisions (use add with a clear message)
+ccr add "Decision: Use PostgreSQL over MongoDB. Need ACID transactions for financial data." --file src/db.ts --tags "decision,architecture"
 ```
 
-### Viewing Context
+</details>
+
+<details>
+<summary><b>🔍 Searching Context</b></summary>
 
 ```bash
-# View timeline for file
-ccr timeline src/auth.ts
+# Natural language search
+ccr search "why did we choose PostgreSQL over MongoDB"
 
-# View context for specific commit
-ccr show abc123
+# Search by file pattern
+ccr search "authentication" --file "*.ts"
 
-# Open web viewer
-ccr web
+# Search by type
+ccr search "decision" --type decision
 ```
 
-### Git Hook Integration
+</details>
 
-Automatically prompts for context on commits:
+<details>
+<summary><b>📈 View Analytics</b></summary>
 
 ```bash
-git commit -m "Add authentication"
-# Prompts: "Add optional context? (y/n/voice)"
-# You can add text, voice note, or skip
+# Show project statistics
+ccr stats
+
+# Output:
+# 📊 Total Contexts: 247
+# 📈 Avg per Commit: 2.3
+# 🔥 Most Documented Files:
+#    ├─ src/auth.ts (45)
+#    ├─ src/api.ts (32)
+#    └─ src/utils.ts (28)
 ```
 
-## Configuration
+</details>
+
+<details>
+<summary><b>⏱️ View Timeline</b></summary>
+
+```bash
+# See complete history for a file
+ccr timeline src/components/Auth.tsx
+ccr timeline src/api.ts
+```
+
+</details>
+
+---
+
+## 🏗️ Architecture
+
+<div align="center">
+
+```mermaid
+graph TB
+    subgraph "User Interfaces"
+        A[VS Code Extension]
+        B[CLI Tool]
+        C[Browser Extension]
+        D[Web Viewer]
+    end
+    
+    subgraph "Core Engine"
+        E[Context Capture]
+        F[Storage Layer]
+        G[Search Engine]
+    end
+    
+    subgraph "Integrations"
+        H[Git Hooks]
+        I[Slack]
+        J[Linear/Jira]
+    end
+    
+    A --> E
+    B --> E
+    C --> E
+    D --> G
+    E --> F
+    F --> G
+    H --> E
+    E --> I
+    E --> J
+    
+    style A fill:#007ACC,stroke:#005A9C,color:#fff
+    style B fill:#4CAF50,stroke:#2E7D32,color:#fff
+    style C fill:#FF9800,stroke:#E65100,color:#fff
+    style D fill:#9C27B0,stroke:#6A1B9A,color:#fff
+    style E fill:#2196F3,stroke:#1565C0,color:#fff
+    style F fill:#F44336,stroke:#C62828,color:#fff
+    style G fill:#00BCD4,stroke:#00838F,color:#fff
+```
+
+</div>
+
+### 📦 Project Structure
+
+```
+code-context-recorder/
+├── 🎯 packages/
+│   ├── core/              # TypeScript core library
+│   ├── vscode-extension/  # VS Code integration
+│   ├── cli/               # Command-line interface
+│   ├── git-hooks/         # Git integration
+│   ├── browser-extension/ # Browser tracking
+│   └── web-viewer/        # React web UI
+├── 📖 docs/               # Documentation
+└── 🧪 tests/              # Test suites
+```
+
+---
+
+## 🎨 Tech Stack
+
+<div align="center">
+
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+
+</div>
+
+<table>
+<tr>
+<td>
+
+**Core**
+- TypeScript (Strict Mode)
+- Node.js
+- SQLite (better-sqlite3)
+
+</td>
+<td>
+
+**Search**
+- MiniSearch
+- Full-text indexing
+- Fuzzy matching
+
+</td>
+<td>
+
+**UI**
+- VS Code Extension API
+- React + TailwindCSS
+- WebExtensions API
+
+</td>
+</tr>
+</table>
+
+---
+
+## 📊 Configuration
 
 Create `.ccrrc.json` in your project root:
 
 ```json
 {
   "storage": {
-    "type": "local", // or "sqlite", "cloud"
+    "type": "sqlite",
     "path": ".ccr"
   },
-  "tracking": {
-    "browser": true,
-    "voice": true,
-    "autoCapture": true
+  "capture": {
+    "autoCapture": true,
+    "includeBrowserHistory": true,
+    "includeVoiceNotes": true
   },
   "integrations": {
-    "slack": {
-      "enabled": false,
-      "webhook": ""
-    },
-    "linear": {
-      "enabled": false,
-      "apiKey": ""
-    }
+    "slack": { "enabled": false },
+    "linear": { "enabled": false },
+    "jira": { "enabled": false }
   },
   "privacy": {
-    "excludePatterns": ["*.env", "*.key", "secrets/*"]
+    "excludePatterns": ["*.env", "*.key", "secrets/*"],
+    "localOnly": true
   }
 }
 ```
 
-## Tech Stack
+---
 
-- **Core**: TypeScript, Node.js
-- **Storage**: SQLite, IndexedDB
-- **VS Code Extension**: VS Code Extension API
-- **Browser Extension**: WebExtensions API (Chrome/Firefox compatible)
-- **Web Viewer**: React, TailwindCSS
-- **Voice Recording**: Web Audio API
-- **Search**: MiniSearch (client-side full-text search)
+## 🗺️ Roadmap
 
-## Project Structure
+<div align="center">
 
-```
-packages/
-├── core/
-│   ├── src/
-│   │   ├── storage/          # Storage adapters (SQLite, local, cloud)
-│   │   ├── capture/          # Context capture logic
-│   │   ├── search/           # Search and query engine
-│   │   ├── integrations/     # Third-party integrations
-│   │   └── api/              # Core API
-│   └── package.json
-│
-├── vscode-extension/
-│   ├── src/
-│   │   ├── extension.ts      # Extension entry point
-│   │   ├── commands/         # VS Code commands
-│   │   ├── providers/        # Tree view, hover providers
-│   │   └── views/            # Webview panels
-│   └── package.json
-│
-├── browser-extension/
-│   ├── src/
-│   │   ├── background/       # Background script
-│   │   ├── content/          # Content scripts
-│   │   └── popup/            # Extension popup
-│   └── manifest.json
-│
-├── git-hooks/
-│   ├── hooks/
-│   │   ├── post-commit
-│   │   └── pre-push
-│   └── install.js
-│
-├── cli/
-│   ├── src/
-│   │   ├── commands/         # CLI commands
-│   │   └── index.ts
-│   └── package.json
-│
-└── web-viewer/
-    ├── src/
-    │   ├── components/       # React components
-    │   ├── pages/            # Page components
-    │   └── App.tsx
-    └── package.json
+### Where We're Going 🚀
+
+</div>
+
+```mermaid
+gantt
+    title Code Context Recorder Development Timeline
+    dateFormat  YYYY-MM-DD
+    section Phase 1
+    Core Engine & Storage     :done, 2024-01-01, 30d
+    VS Code Extension MVP     :done, 2024-01-15, 30d
+    Git Hooks Integration     :done, 2024-02-01, 15d
+    
+    section Phase 2
+    Voice Note Recording      :active, 2024-02-15, 30d
+    Web Viewer UI             :active, 2024-02-20, 45d
+    Browser Extension         :active, 2024-03-01, 30d
+    
+    section Phase 3
+    Team Collaboration        :2024-04-01, 45d
+    AI-Powered Features       :2024-05-01, 60d
+    Mobile App                :2024-06-01, 90d
 ```
 
-## Contributing
+<details>
+<summary><b>✅ Completed</b></summary>
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+- [x] Core storage and API
+- [x] SQLite integration with WAL mode
+- [x] VS Code extension MVP
+- [x] Git hooks integration
+- [x] Full-text search engine
+- [x] Timeline visualization
+- [x] CLI tool
+- [x] Analytics dashboard
+
+</details>
+
+<details>
+<summary><b>🚧 In Progress</b></summary>
+
+- [ ] Voice note recording (60% complete)
+- [ ] Browser extension (40% complete)
+- [ ] Web viewer UI (30% complete)
+
+</details>
+
+<details>
+<summary><b>🔮 Coming Soon</b></summary>
+
+- [ ] Team collaboration features
+- [ ] Slack/Linear/Jira integrations
+- [ ] AI-powered context suggestions
+- [ ] Semantic search improvements
+- [ ] Mobile app for viewing context
+- [ ] Real-time sync
+- [ ] Cloud backup (optional)
+
+</details>
+
+---
+
+## 🤝 Contributing
+
+We ❤️ contributions! Check out our [Contributing Guide](CONTRIBUTING.md)
+
+<div align="center">
+
+### 🌟 Contributors
+
+<a href="https://github.com/koushik4475/code-context-recorder/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=koushik4475/code-context-recorder" />
+</a>
+
+*Made with [contrib.rocks](https://contrib.rocks)*
+
+</div>
 
 ### Development Setup
 
 ```bash
+# Clone the repository
+git clone https://github.com/koushik4475/code-context-recorder.git
+cd code-context-recorder
+
 # Install dependencies
 npm install
 
@@ -258,42 +532,112 @@ npm run dev
 # Run tests
 npm test
 
-# Lint
-npm run lint
-
 # Build all packages
 npm run build
 ```
 
-## Roadmap
+---
 
-- [x] Core storage and API
-- [x] VS Code extension MVP
-- [x] Git hooks integration
-- [x] Browser extension for web tracking
-- [ ] Voice note recording
-- [ ] Web viewer UI
-- [ ] Semantic search
-- [ ] Team collaboration features
-- [ ] Slack/Linear/Jira integrations
-- [ ] AI-powered context suggestions
-- [ ] Mobile app for viewing context
+## 📚 Documentation
 
-## License
+<table>
+<tr>
+<td align="center">
 
-MIT License - see [LICENSE](LICENSE) for details.
+### 📖 [Usage Guide](USAGE.md)
+Learn how to use CCR effectively
 
-## Support
+</td>
+<td align="center">
 
-- 📖 [Documentation](https://code-context-recorder.dev/docs)
-- 💬 [Discord Community](https://discord.gg/ccr)
-- 🐛 [Report a Bug](https://github.com/yourusername/code-context-recorder/issues)
-- 💡 [Request a Feature](https://github.com/yourusername/code-context-recorder/issues)
+### 🏗️ [Architecture](ARCHITECTURE.md)
+Technical deep-dive
 
-## Credits
+</td>
+<td align="center">
 
-Built with ❤️ by developers who are tired of losing context.
+### 🤝 [Contributing](CONTRIBUTING.md)
+Join the community
+
+</td>
+</tr>
+</table>
 
 ---
 
-**Star ⭐ this repo if you find it useful!**
+## 🌟 Why Use Code Context Recorder?
+
+<table>
+<tr>
+<td width="50%">
+
+### 🎯 For Individual Developers
+
+✅ Never forget why you wrote something  
+✅ Resume work instantly after breaks  
+✅ Build a knowledge base of your decisions  
+✅ Improve code review quality  
+✅ Learn from your past choices
+
+</td>
+<td width="50%">
+
+### 👥 For Teams
+
+✅ Onboard new developers 10x faster  
+✅ Preserve institutional knowledge  
+✅ Reduce time debugging legacy code  
+✅ Improve team communication  
+✅ Create living documentation
+
+</td>
+</tr>
+</table>
+
+---
+
+## 💬 Community
+
+<div align="center">
+
+[![Discord](https://img.shields.io/badge/Discord-Join_Chat-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/ccr)
+[![Twitter](https://img.shields.io/badge/Twitter-Follow-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/codecontextrec)
+[![GitHub Discussions](https://img.shields.io/badge/GitHub-Discussions-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/koushik4475/code-context-recorder/discussions)
+
+</div>
+
+- 💬 [Discord Server](https://discord.gg/ccr) - Get help and chat
+- 🐛 [Issue Tracker](https://github.com/koushik4475/code-context-recorder/issues) - Report bugs
+- 💡 [Discussions](https://github.com/koushik4475/code-context-recorder/discussions) - Share ideas
+- 📧 Email: hello@code-context-recorder.dev
+
+---
+
+## 📄 License
+
+Code Context Recorder is [MIT licensed](LICENSE).
+
+---
+
+## 🙏 Acknowledgments
+
+Built with ❤️ by developers who are tired of losing context.
+
+Special thanks to:
+- The amazing open-source community
+- Early adopters and beta testers
+- All contributors who made this possible
+
+---
+
+<div align="center">
+
+### ⭐ Star us on GitHub — it motivates us a lot!
+
+[![Star History Chart](https://api.star-history.com/svg?repos=koushik4475/code-context-recorder&type=Date)](https://star-history.com/#koushik4475/code-context-recorder&Date)
+
+---
+
+**[⬆ Back to Top](#-code-context-recorder)**
+
+</div>
