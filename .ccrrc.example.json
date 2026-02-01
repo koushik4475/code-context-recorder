@@ -1,0 +1,95 @@
+{
+  "projectPath": ".",
+  "storagePath": ".ccr",
+  "storageType": "sqlite",
+  "capture": {
+    "autoCapture": true,
+    "captureTypes": [
+      "text",
+      "voice",
+      "link",
+      "code_snippet",
+      "commit",
+      "meeting_note",
+      "decision",
+      "bug_report",
+      "research"
+    ],
+    "excludePatterns": [
+      "*.env",
+      "*.key",
+      "*.pem",
+      "node_modules/**",
+      ".git/**",
+      "dist/**",
+      "build/**",
+      "coverage/**",
+      "*.log"
+    ],
+    "includeBrowserHistory": true,
+    "includeVoiceNotes": true,
+    "maxVoiceDuration": 300
+  },
+  "git": {
+    "promptOnCommit": true,
+    "autoCapture": true,
+    "includeRecentBrowserActivity": true
+  },
+  "integrations": {
+    "slack": {
+      "enabled": false,
+      "webhook": "",
+      "channels": {
+        "decisions": "#engineering-decisions",
+        "bugs": "#bug-reports"
+      }
+    },
+    "linear": {
+      "enabled": false,
+      "apiKey": "",
+      "teamId": "",
+      "autoLinkIssues": true
+    },
+    "jira": {
+      "enabled": false,
+      "url": "https://your-domain.atlassian.net",
+      "email": "",
+      "apiToken": "",
+      "autoLinkIssues": true
+    },
+    "github": {
+      "enabled": false,
+      "token": "",
+      "autoLinkPRs": true
+    }
+  },
+  "privacy": {
+    "excludePatterns": [
+      "*.env",
+      "*.key",
+      "secrets/**",
+      "*.pem",
+      "*.p12"
+    ],
+    "redactSensitiveData": true,
+    "localOnly": true,
+    "sensitiveKeywords": [
+      "password",
+      "secret",
+      "token",
+      "api_key",
+      "private_key"
+    ]
+  },
+  "ui": {
+    "theme": "auto",
+    "dateFormat": "relative",
+    "showLineNumbers": true,
+    "enableCodeSnippets": true
+  },
+  "search": {
+    "caseSensitive": false,
+    "fuzzyMatch": true,
+    "maxResults": 50
+  }
+}

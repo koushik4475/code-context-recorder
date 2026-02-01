@@ -1,0 +1,120 @@
+#!/usr/bin/env node
+
+const { execSync } = require('child_process');
+const { CodeContextRecorder, createDefaultConfig } = require('@ccr/core');
+const readline = require('readline');
+const fs = require('fs');
+const path = require('path');
+
+async function main() {
+  try {
+    // Get git info
+    const commitHash = execSync('git rev-parse HEAD').toString().trim();
+    const author = execSync('git log -1 --format=%an').toString().trim();
+    const email = execSync('git log -1 --format=%ae').toString().trim();
+    const message = execSync('git log -1 --format=%B').toString().trim();
+    const branch = execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+    const filesChanged = execSync('git diff-tree --no-commit-id --name-only -r HEAD')
+      .toString()
+      .trim()
+      .split('\n')
+      .filter(Boolean);
+
+    // Check if CCR should prompt for context
+    const projectRoot = execSync('git rev-parse --show-toplevel').toString().trim();
+    const ccrConfigPath = path.join(projectRoot, '.ccrrc.json');
+    
+    let promptForContext = true;
+    if (fs.existsSync(ccrConfigPath)) {
+      const config = JSON.parse(fs.readFileSync(ccrConfigPath, 'utf8'));
+      promptForContext = config.git?.promptOnCommit !== false;
+    }
+
+    if (!promptForContext) {
+      // Just save the commit without prompting
+      await saveCommitContext(projectRoot, {
+        commitHash,
+        author,
+        email,
+        message,
+        branch,
+        filesChanged,
+        timestamp: new Date()
+      });
+      return;
+    }
+
+    // Prompt for additional context
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+
+    console.log('\n📝 Code Context Recorder');
+    console.log('Would you like to add additional context to this commit?');
+    
+    rl.question('[y/n/voice]: ', async (answer) => {
+      rl.close();
+      
+      if (answer.toLowerCase() === 'y') {
+        const contextRl = readline.createInterface({
+          input: process.stdin,
+          output: process.stdout
+        });
+        
+        contextRl.question('Context: ', async (additionalContext) => {
+          contextRl.close();
+          
+          await saveCommitContext(projectRoot, {
+            commitHash,
+            author,
+            email,
+            message,
+            branch,
+            filesChanged,
+            timestamp: new Date()
+          }, additionalContext);
+          
+          console.log('✅ Context saved');
+        });
+      } else if (answer.toLowerCase() === 'voice') {
+        console.log('Voice notes coming soon!');
+        await saveCommitContext(projectRoot, {
+          commitHash,
+          author,
+          email,
+          message,
+          branch,
+          filesChanged,
+          timestamp: new Date()
+        });
+      } else {
+        await saveCommitContext(projectRoot, {
+          commitHash,
+          author,
+          email,
+          message,
+          branch,
+          filesChanged,
+          timestamp: new Date()
+        });
+      }
+    });
+
+  } catch (error) {
+    console.error('CCR hook error:', error.message);
+    // Don't fail the commit
+    process.exit(0);
+  }
+}
+
+async function saveCommitContext(projectRoot, gitContext, additionalContext) {
+  const config = createDefaultConfig(projectRoot);
+  const recorder = new CodeContextRecorder(config);
+  
+  await recorder.initialize();
+  await recorder.recordCommit(gitContext, additionalContext);
+  await recorder.close();
+}
+
+main();

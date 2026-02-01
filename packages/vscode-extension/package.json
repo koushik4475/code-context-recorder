@@ -1,0 +1,203 @@
+{
+  "name": "code-context-recorder",
+  "displayName": "Code Context Recorder",
+  "description": "Capture the WHY behind your code, not just the WHAT",
+  "version": "0.1.0",
+  "publisher": "code-context-recorder",
+  "icon": "resources/icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other",
+    "Snippets",
+    "Documentation"
+  ],
+  "keywords": [
+    "context",
+    "documentation",
+    "knowledge",
+    "decision",
+    "team"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ccr.addContext",
+        "title": "CCR: Add Context to Current File",
+        "icon": "$(note)"
+      },
+      {
+        "command": "ccr.addVoiceNote",
+        "title": "CCR: Add Voice Note",
+        "icon": "$(mic)"
+      },
+      {
+        "command": "ccr.viewTimeline",
+        "title": "CCR: View File Timeline",
+        "icon": "$(history)"
+      },
+      {
+        "command": "ccr.search",
+        "title": "CCR: Search Context",
+        "icon": "$(search)"
+      },
+      {
+        "command": "ccr.addDecision",
+        "title": "CCR: Record Decision",
+        "icon": "$(gist-fork)"
+      },
+      {
+        "command": "ccr.linkTicket",
+        "title": "CCR: Link Ticket/Issue",
+        "icon": "$(link)"
+      },
+      {
+        "command": "ccr.showRecent",
+        "title": "CCR: Show Recent Context",
+        "icon": "$(clock)"
+      },
+      {
+        "command": "ccr.showAnalytics",
+        "title": "CCR: Show Analytics",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "ccr.openWebViewer",
+        "title": "CCR: Open Web Viewer",
+        "icon": "$(globe)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "ccr.addContext",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "ccr.addVoiceNote",
+        "key": "ctrl+shift+v",
+        "mac": "cmd+shift+v",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "ccr.viewTimeline",
+        "key": "ctrl+shift+t",
+        "mac": "cmd+shift+t",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "ccr.search",
+        "key": "ctrl+shift+f",
+        "mac": "cmd+shift+f"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ccr-sidebar",
+          "title": "Code Context",
+          "icon": "resources/sidebar-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "ccr-sidebar": [
+        {
+          "id": "ccr.recentContext",
+          "name": "Recent Context"
+        },
+        {
+          "id": "ccr.fileContext",
+          "name": "Current File Context"
+        },
+        {
+          "id": "ccr.stats",
+          "name": "Statistics"
+        }
+      ]
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "ccr.addContext",
+          "group": "ccr@1",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "ccr.addVoiceNote",
+          "group": "ccr@2",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "ccr.viewTimeline",
+          "group": "ccr@3",
+          "when": "editorTextFocus"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "ccr.search",
+          "when": "view == ccr.recentContext",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Code Context Recorder",
+      "properties": {
+        "ccr.autoCapture": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically capture browser activity and context"
+        },
+        "ccr.includeBrowserHistory": {
+          "type": "boolean",
+          "default": true,
+          "description": "Track browser activity (requires browser extension)"
+        },
+        "ccr.promptOnCommit": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prompt for additional context on git commits"
+        },
+        "ccr.excludePatterns": {
+          "type": "array",
+          "default": [
+            "*.env",
+            "*.key",
+            "node_modules/**",
+            ".git/**"
+          ],
+          "description": "File patterns to exclude from context capture"
+        },
+        "ccr.storagePath": {
+          "type": "string",
+          "default": ".ccr",
+          "description": "Path to store context data (relative to workspace)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "lint": "eslint src --ext .ts",
+    "package": "vsce package",
+    "install-extension": "code --install-extension code-context-recorder-0.1.0.vsix"
+  },
+  "dependencies": {
+    "@ccr/core": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^2.22.0",
+    "typescript": "^5.3.2"
+  }
+}

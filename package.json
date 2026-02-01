@@ -1,0 +1,50 @@
+{
+  "name": "code-context-recorder",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Capture the WHY behind your code, not just the WHAT",
+  "keywords": [
+    "developer-tools",
+    "documentation",
+    "context",
+    "knowledge-management",
+    "code-documentation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/code-context-recorder.git"
+  },
+  "license": "MIT",
+  "author": "Code Context Recorder Contributors",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @ccr/core && npm run build -w @ccr/cli && npm run build -w code-context-recorder",
+    "dev": "npm run dev --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "clean": "rm -rf node_modules packages/*/node_modules packages/*/dist",
+    "prepare": "husky install",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "npm run build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
