@@ -1,6 +1,9 @@
 <div align="center">
 
-# 🧠 Code Context Recorder
+# Code Context Recorder | Preserve Developer Decisions and Code Change Rationale
+
+Code Context Recorder is a developer-tool project focused on preserving the reasoning behind code changes. It aims to capture implementation context that Git diffs and inline comments do not explain, helping teams understand why a design decision was made during future maintenance, debugging, and onboarding. Explore the examples and setup instructions to see the current workflow and integration status.
+
 
 ### *Never Lose the WHY Behind Your Code Again*
 
