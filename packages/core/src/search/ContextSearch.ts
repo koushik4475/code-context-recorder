@@ -57,7 +57,7 @@ export class ContextSearch {
       await this.buildIndex();
     }
 
-    let results = this.searchIndex.search(query, { limit: options?.limit || 50 } as Record<string, unknown>);
+    const results = this.searchIndex.search(query);
 
     // Get full context entries
     const contextIds = results.map(r => r.id);
@@ -99,7 +99,14 @@ export class ContextSearch {
       );
     }
 
-    return filtered;
+    // Apply pagination after filtering so a page is filled with matching entries.
+    // A limit of 0 intentionally returns an empty page; negative values are clamped.
+    const requestedOffset = options?.offset ?? 0;
+    const requestedLimit = options?.limit ?? 50;
+    const offset = Number.isFinite(requestedOffset) ? Math.max(0, Math.trunc(requestedOffset)) : 0;
+    const limit = Number.isFinite(requestedLimit) ? Math.max(0, Math.trunc(requestedLimit)) : 50;
+
+    return filtered.slice(offset, offset + limit);
   }
 
   /**
