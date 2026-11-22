@@ -14,31 +14,31 @@ export async function addContextCommand(
     // Find project root
     const projectPath = findProjectRoot();
     const config = createDefaultConfig(projectPath);
-    
+
     const recorder = new CodeContextRecorder(config);
     await recorder.initialize();
 
     // Get current file from git if not provided
-    let filePath = options.file;
+    const filePath = options.file;
     if (!filePath) {
       console.error('Please specify a file with --file');
       process.exit(1);
     }
 
     // Parse tags
-    const tags = options.tags 
+    const tags = options.tags
       ? options.tags.split(',').map(t => t.trim())
       : [];
 
     // Add context
     await recorder.addContext(content, filePath, {
       type: ContextType.TEXT,
-      lineNumber: options.line ? parseInt(options.line) : undefined,
+      lineNumber: options.line ? parseInt(options.line, 10) : undefined,
       tags
     });
 
     console.log('✅ Context added successfully');
-    
+
     await recorder.close();
   } catch (error) {
     console.error('❌ Error:', error);
@@ -46,15 +46,23 @@ export async function addContextCommand(
   }
 }
 
-function findProjectRoot(): string {
-  let currentDir = process.cwd();
-  
-  while (currentDir !== '/') {
+function findProjectRoot(startDir: string = process.cwd()): string {
+  const fallbackDir = path.resolve(startDir);
+  let currentDir = fallbackDir;
+
+  // Compare each directory with its parent instead of assuming a POSIX root.
+  // On Windows, the filesystem root is a drive path such as C:\, not '/'.
+  while (true) {
     if (fs.existsSync(path.join(currentDir, '.git'))) {
       return currentDir;
     }
-    currentDir = path.dirname(currentDir);
+
+    const parentDir = path.dirname(currentDir);
+    if (parentDir === currentDir) {
+      break;
+    }
+    currentDir = parentDir;
   }
-  
-  return process.cwd();
+
+  return fallbackDir;
 }
